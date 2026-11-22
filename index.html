@@ -1,0 +1,834 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>وسائل التواصل الاجتماعي | الوعي الرقمي</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #102b46;
+  --blue: #176b87;
+  --teal: #2a9d8f;
+  --light: #f2f7f8;
+  --white: #ffffff;
+  --text: #243747;
+  --muted: #647887;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--light);
+  color: var(--text);
+  line-height: 1.9;
+}
+
+nav {
+  background: var(--navy);
+  color: white;
+  padding: 15px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 15px #102b4620;
+}
+
+.logo {
+  font-weight: 900;
+  font-size: 19px;
+  color: #8ce0d1;
+}
+
+nav .links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  transition: .3s;
+}
+
+nav a:hover {
+  color: #8ce0d1;
+}
+
+.hero {
+  min-height: 590px;
+  padding: 100px 8%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  background:
+    radial-gradient(circle at 20% 20%, #2a9d8f55, transparent 35%),
+    radial-gradient(circle at 85% 80%, #3985aa55, transparent 35%),
+    linear-gradient(135deg, #102b46, #164d65);
+}
+
+.hero-content {
+  max-width: 850px;
+  animation: appear 1s ease;
+}
+
+.label {
+  display: inline-block;
+  padding: 7px 22px;
+  border: 1px solid #8ce0d1;
+  color: #a5e9dc;
+  border-radius: 30px;
+  font-size: 13px;
+  margin-bottom: 22px;
+}
+
+.hero h1 {
+  font-size: clamp(35px, 6vw, 65px);
+  line-height: 1.5;
+  font-weight: 900;
+}
+
+.hero h1 span {
+  color: #8ce0d1;
+}
+
+.hero p {
+  color: #d5e4ec;
+  max-width: 700px;
+  margin: 20px auto 30px;
+  font-size: 16px;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--teal);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: .3s;
+}
+
+.btn:hover {
+  background: #228477;
+  transform: translateY(-3px);
+}
+
+section {
+  padding: 80px 8%;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-heading h2 {
+  font-size: 32px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.intro {
+  background: white;
+  text-align: center;
+}
+
+.intro-box {
+  max-width: 850px;
+  margin: auto;
+  padding: 30px;
+  border-right: 5px solid var(--teal);
+  background: #f5faf9;
+  border-radius: 12px;
+  text-align: right;
+}
+
+.intro-box p {
+  color: #536a78;
+  line-height: 2.2;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 5px 20px #102b460b;
+  border: 1px solid #e5eeee;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px #102b4615;
+}
+
+.card .icon {
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  color: var(--navy);
+  margin-bottom: 8px;
+  font-size: 19px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.card .more {
+  display: none;
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 1px solid #e4eeee;
+  color: var(--blue);
+  font-size: 13px;
+}
+
+.card.active .more {
+  display: block;
+}
+
+.good {
+  border-top: 4px solid var(--teal);
+}
+
+.bad {
+  border-top: 4px solid #d18a69;
+}
+
+.protect {
+  background: white;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.step {
+  padding: 22px;
+  background: var(--light);
+  border-radius: 13px;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.number {
+  min-width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+
+.step h3 {
+  font-size: 16px;
+  color: var(--navy);
+}
+
+.step p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.tip {
+  background: linear-gradient(120deg, #102b46, #176b87);
+  color: white;
+  border-radius: 20px;
+  padding: 40px 25px;
+  text-align: center;
+  margin-top: 45px;
+}
+
+.tip h2 {
+  margin-bottom: 12px;
+  font-size: 26px;
+}
+
+.tip p {
+  color: #d5e7ed;
+  max-width: 750px;
+  margin: auto;
+}
+
+.quiz-section {
+  background: #edf4f5;
+}
+
+.quiz {
+  max-width: 700px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 17px;
+  box-shadow: 0 5px 20px #102b4610;
+}
+
+.progress {
+  height: 7px;
+  background: #e5eeee;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--teal);
+  width: 0%;
+  transition: .3s;
+}
+
+.quiz h3 {
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+
+.option {
+  width: 100%;
+  padding: 13px;
+  margin-bottom: 10px;
+  background: #f4f8f8;
+  border: 1px solid #dce8e8;
+  color: var(--text);
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 14px;
+  text-align: right;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.option:hover:not(:disabled) {
+  background: #e4f5f1;
+  border-color: var(--teal);
+}
+
+.option:disabled {
+  cursor: default;
+}
+
+#feedback {
+  margin-top: 15px;
+  font-weight: 700;
+  min-height: 30px;
+}
+
+#next {
+  display: none;
+  margin-top: 15px;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.result {
+  text-align: center;
+  display: none;
+}
+
+.result strong {
+  display: block;
+  font-size: 45px;
+  color: var(--teal);
+}
+
+footer {
+  background: var(--navy);
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+}
+
+footer p {
+  font-size: 13px;
+  color: #c1d5df;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media(max-width:650px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav .links {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  nav a {
+    font-size: 11px;
+  }
+
+  section {
+    padding: 60px 6%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">الوعي الرقمي 🌐</div>
+  <div class="links">
+    <a href="#home">الرئيسية</a>
+    <a href="#about">مقدمة</a>
+    <a href="#good">الفوائد</a>
+    <a href="#bad">الأضرار</a>
+    <a href="#protect">الحماية</a>
+    <a href="#quiz">اختبر نفسك</a>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="hero-content">
+    <div class="label">مشروع توعوي وتعليمي</div>
+    <h1>وسائل التواصل الاجتماعي<br><span>بين الفوائد والأضرار</span></h1>
+    <p>
+      عالم رقمي يتيح لنا فرصاً كبيرة للتعلم والتواصل والإبداع،
+      لكنه يتطلب منا الوعي والمسؤولية لحماية أنفسنا والاستفادة منه بطريقة صحيحة.
+    </p>
+    <a href="#about" class="btn">ابدأ رحلتك لاكتشاف الموضوع ←</a>
+  </div>
+</header>
+
+<section class="intro" id="about">
+  <div class="section-heading">
+    <h2>مقدمة عن وسائل التواصل الاجتماعي</h2>
+    <p>ما دورها في حياتنا اليومية؟</p>
+  </div>
+
+  <div class="intro-box">
+    <p>
+      أصبحت وسائل التواصل الاجتماعي جزءاً مهماً من حياتنا اليومية،
+      فهي تتيح للأفراد التواصل وتبادل الأفكار والصور والمعلومات
+      بسهولة وسرعة. كما تساعد في نشر المعرفة والتعبير عن الآراء.
+      ومع ذلك، فإن استخدامها بطريقة غير صحيحة قد يؤدي إلى مشكلات
+      مثل إضاعة الوقت وانتهاك الخصوصية وانتشار المعلومات الخاطئة.
+      لذلك من المهم أن نتعلم كيفية الاستفادة منها مع تجنب أضرارها.
+    </p>
+  </div>
+</section>
+
+<section id="good">
+  <div class="section-heading">
+    <h2>إيجابيات وسائل التواصل الاجتماعي</h2>
+    <p>اضغط على كل بطاقة لمعرفة المزيد عن فوائدها.</p>
+  </div>
+
+  <div class="cards">
+
+    <div class="card good" onclick="toggleCard(this)">
+      <div class="icon">📚</div>
+      <h3>التعلم واكتساب المعرفة</h3>
+      <p>تساعدنا على الوصول إلى المعلومات والمصادر التعليمية.</p>
+      <div class="more">
+        مثال: مشاهدة الدروس التعليمية وتعلم اللغات والمهارات الجديدة.
+      </div>
+    </div>
+
+    <div class="card good" onclick="toggleCard(this)">
+      <div class="icon">🌍</div>
+      <h3>التواصل مع الآخرين</h3>
+      <p>تسهل التواصل مع الأصدقاء والأقارب في مختلف الأماكن.</p>
+      <div class="more">
+        مثال: إجراء مكالمات مع أفراد العائلة الذين يعيشون في دول أخرى.
+      </div>
+    </div>
+
+    <div class="card good" onclick="toggleCard(this)">
+      <div class="icon">💡</div>
+      <h3>الإبداع وتنمية المواهب</h3>
+      <p>تمنحنا فرصة مشاركة أفكارنا وإبداعاتنا.</p>
+      <div class="more">
+        مثال: نشر الرسومات والتصوير والأعمال الفنية والاستفادة من آراء الآخرين.
+      </div>
+    </div>
+
+    <div class="card good" onclick="toggleCard(this)">
+      <div class="icon">📰</div>
+      <h3>متابعة الأخبار</h3>
+      <p>تساعدنا على معرفة الأحداث والمستجدات حول العالم.</p>
+      <div class="more">
+        مثال: متابعة الأخبار من المصادر الرسمية والموثوقة.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="bad">
+  <div class="section-heading">
+    <h2>سلبيات وسائل التواصل الاجتماعي</h2>
+    <p>من المهم معرفة المخاطر حتى نستطيع تجنبها.</p>
+  </div>
+
+  <div class="cards">
+
+    <div class="card bad" onclick="toggleCard(this)">
+      <div class="icon">⏳</div>
+      <h3>إضاعة الوقت</h3>
+      <p>قد يؤدي الاستخدام المفرط إلى إهمال الواجبات والأنشطة اليومية.</p>
+      <div class="more">
+        مثال: قضاء وقت طويل في تصفح التطبيقات بدلاً من الدراسة أو ممارسة الهوايات.
+      </div>
+    </div>
+
+    <div class="card bad" onclick="toggleCard(this)">
+      <div class="icon">🔐</div>
+      <h3>انتهاك الخصوصية</h3>
+      <p>قد يؤدي نشر المعلومات الشخصية إلى تعريضها للاستغلال.</p>
+      <div class="more">
+        مثال: مشاركة العنوان أو رقم الهاتف أو كلمات المرور مع أشخاص غير موثوقين.
+      </div>
+    </div>
+
+    <div class="card bad" onclick="toggleCard(this)">
+      <div class="icon">⚠️</div>
+      <h3>التنمر الإلكتروني</h3>
+      <p>قد يتعرض بعض المستخدمين للإساءة أو التعليقات الجارحة.</p>
+      <div class="more">
+        مثال: نشر تعليقات مسيئة أو السخرية من الآخرين عبر الإنترنت.
+      </div>
+    </div>
+
+    <div class="card bad" onclick="toggleCard(this)">
+      <div class="icon">❌</div>
+      <h3>المعلومات غير الصحيحة</h3>
+      <p>قد تنتشر الأخبار والشائعات دون التأكد من صحتها.</p>
+      <div class="more">
+        مثال: إعادة نشر خبر غير موثوق دون الرجوع إلى مصدر رسمي.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="protect" id="protect">
+  <div class="section-heading">
+    <h2>كيف نحمي أنفسنا من أضرارها؟</h2>
+    <p>خطوات بسيطة تساعدنا على الاستخدام الآمن والمسؤول.</p>
+  </div>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="number">١</div>
+      <div>
+        <h3>حماية المعلومات الشخصية</h3>
+        <p>عدم مشاركة كلمات المرور أو العنوان أو المعلومات الخاصة.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="number">٢</div>
+      <div>
+        <h3>تنظيم الوقت</h3>
+        <p>تحديد وقت مناسب للاستخدام وعدم إهمال الدراسة والنوم.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="number">٣</div>
+      <div>
+        <h3>التحقق من المعلومات</h3>
+        <p>التأكد من صحة الأخبار بالرجوع إلى المصادر الموثوقة.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="number">٤</div>
+      <div>
+        <h3>احترام الآخرين</h3>
+        <p>استخدام كلمات مهذبة وتجنب الإساءة والتنمر الإلكتروني.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="number">٥</div>
+      <div>
+        <h3>التعامل مع الغرباء بحذر</h3>
+        <p>عدم مشاركة المعلومات أو الصور الخاصة مع أشخاص مجهولين.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="number">٦</div>
+      <div>
+        <h3>طلب المساعدة</h3>
+        <p>إخبار أحد الوالدين أو شخص بالغ موثوق عند التعرض لمشكلة.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="tip">
+    <h2>تذكّر دائماً 💚</h2>
+    <p>
+      كن واعياً قبل أن تنشر، وتأكد قبل أن تصدق،
+      واحترم الآخرين في كل ما تكتبه.
+      فالمستخدم المسؤول هو من يحافظ على أمنه وخصوصيته
+      ويستفيد من التكنولوجيا بطريقة إيجابية.
+    </p>
+  </div>
+</section>
+
+<section class="quiz-section" id="quiz">
+  <div class="section-heading">
+    <h2>اختبر معلوماتك 🧠</h2>
+    <p>أجب عن الأسئلة التالية لمعرفة مدى فهمك للموضوع.</p>
+  </div>
+
+  <div class="quiz">
+    <div class="progress">
+      <div class="progress-fill" id="progress"></div>
+    </div>
+
+    <div id="quiz-content">
+      <p id="question-number">السؤال ١ من ٥</p>
+      <h3 id="question"></h3>
+      <div id="options"></div>
+      <div id="feedback"></div>
+      <button class="btn" id="next" onclick="nextQuestion()">السؤال التالي ←</button>
+    </div>
+
+    <div class="result" id="result">
+      <h2>انتهى الاختبار! 🎉</h2>
+      <strong id="score"></strong>
+      <p id="message"></p>
+      <button class="btn" onclick="restartQuiz()">إعادة الاختبار</button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-heading">
+    <h2>الخاتمة</h2>
+  </div>
+
+  <div class="intro-box">
+    <p>
+      في الختام، تُعد وسائل التواصل الاجتماعي من أهم وسائل الاتصال
+      في عصرنا الحديث، فهي تحمل فوائد كثيرة إذا استخدمناها بطريقة
+      صحيحة، وقد تسبب أضراراً إذا أسأنا استخدامها.
+      لذلك يجب علينا التحلي بالوعي والمسؤولية، وحماية خصوصيتنا،
+      وتنظيم أوقاتنا، واحترام الآخرين.
+      فالهدف ليس الابتعاد عن التكنولوجيا، بل تعلم كيفية استخدامها
+      بشكل آمن ومفيد لبناء مجتمع رقمي واعٍ وإيجابي.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <h3>الوعي الرقمي مسؤولية الجميع 🌐</h3>
+  <p>مشروع تعليمي في مادة اللغة العربية</p>
+  <p>إعداد: أميرة النملة</p>
+  <p>© 2026</p>
+</footer>
+
+<script>
+function toggleCard(card) {
+  card.classList.toggle("active");
+}
+
+const questions = [
+  {
+    q: "ما إحدى فوائد وسائل التواصل الاجتماعي؟",
+    options: [
+      "إضاعة الوقت",
+      "التعلم واكتساب المعرفة",
+      "انتهاك الخصوصية"
+    ],
+    correct: 1
+  },
+  {
+    q: "ما المعلومات التي يجب عدم مشاركتها مع الغرباء؟",
+    options: [
+      "كلمات المرور والمعلومات الشخصية",
+      "المعلومات العامة",
+      "الأخبار الرسمية"
+    ],
+    correct: 0
+  },
+  {
+    q: "ماذا نفعل قبل نشر خبر على الإنترنت؟",
+    options: [
+      "ننشره مباشرة",
+      "نرسله للجميع",
+      "نتأكد من صحة الخبر ومصدره"
+    ],
+    correct: 2
+  },
+  {
+    q: "كيف نتصرف عند التعرض للتنمر الإلكتروني؟",
+    options: [
+      "نرد بالإساءة",
+      "نطلب المساعدة من شخص بالغ موثوق",
+      "ننشر معلومات الشخص"
+    ],
+    correct: 1
+  },
+  {
+    q: "ما أفضل طريقة لاستخدام وسائل التواصل الاجتماعي؟",
+    options: [
+      "استخدامها طوال اليوم",
+      "تصديق جميع المعلومات",
+      "استخدامها باعتدال ومسؤولية"
+    ],
+    correct: 2
+  }
+];
+
+let current = 0;
+let points = 0;
+let answered = false;
+
+function loadQuestion() {
+  answered = false;
+
+  const q = questions[current];
+
+  document.getElementById("question-number").textContent =
+    "السؤال " + (current + 1) + " من " + questions.length;
+
+  document.getElementById("question").textContent = q.q;
+
+  document.getElementById("progress").style.width =
+    (current / questions.length * 100) + "%";
+
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("next").style.display = "none";
+
+  const options = document.getElementById("options");
+  options.innerHTML = "";
+
+  q.options.forEach((option, index) => {
+    const button = document.createElement("button");
+    button.className = "option";
+    button.textContent = option;
+
+    button.onclick = () => chooseAnswer(index, button);
+
+    options.appendChild(button);
+  });
+}
+
+function chooseAnswer(index, button) {
+  if (answered) return;
+  answered = true;
+
+  const correct = questions[current].correct;
+  const buttons = document.querySelectorAll(".option");
+
+  buttons.forEach(b => b.disabled = true);
+
+  if (index === correct) {
+    points++;
+    button.style.background = "#d9f4e9";
+    button.style.borderColor = "#2a9d8f";
+    document.getElementById("feedback").textContent =
+      "إجابة صحيحة! أحسنت 👏";
+    document.getElementById("feedback").style.color = "#21856f";
+  } else {
+    button.style.background = "#fce5e5";
+    document.getElementById("feedback").textContent =
+      "ليست الإجابة الصحيحة. يمكنك التعلم من المحاولة!";
+    document.getElementById("feedback").style.color = "#bd5656";
+
+    buttons[correct].style.background = "#d9f4e9";
+    buttons[correct].style.borderColor = "#2a9d8f";
+  }
+
+  document.getElementById("next").style.display = "inline-block";
+
+  if (current === questions.length - 1) {
+    document.getElementById("next").textContent = "عرض النتيجة";
+  }
+}
+
+function nextQuestion() {
+  current++;
+
+  if (current < questions.length) {
+    loadQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  document.getElementById("quiz-content").style.display = "none";
+  document.getElementById("result").style.display = "block";
+  document.getElementById("progress").style.width = "100%";
+
+  document.getElementById("score").textContent =
+    points + " / " + questions.length;
+
+  document.getElementById("message").textContent =
+    points === 5
+      ? "ممتاز! لديك معرفة رائعة بالوعي الرقمي."
+      : points >= 3
+      ? "عمل جيد! استمر في تطوير معرفتك."
+      : "لا بأس! اقرأ المعلومات مرة أخرى وحاول مجدداً.";
+}
+
+function restartQuiz() {
+  current = 0;
+  points = 0;
+
+  document.getElementById("quiz-content").style.display = "block";
+  document.getElementById("result").style.display = "none";
+  document.getElementById("next").textContent = "السؤال التالي ←";
+
+  loadQuestion();
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>
