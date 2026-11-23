@@ -2,1493 +2,993 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#111c35">
-  <title>الوعي الرقمي | الاستخدام الآمن للإنترنت</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --navy: #111c35;
-      --blue: #25466f;
-      --royal: #365b91;
-      --steel: #7895b8;
-      --mist: #e9eef5;
-      --paper: #f5f7fa;
-      --white: #ffffff;
-      --ink: #1c293b;
-      --muted: #647286;
-      --line: #dce3ec;
-      --accent: #a9c5e7;
-      --shadow: 0 18px 55px rgba(17, 28, 53, .09);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 90px;
-    }
-
-    body {
-      font-family: "IBM Plex Sans Arabic", sans-serif;
-      background: var(--paper);
-      color: var(--ink);
-      line-height: 1.9;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font: inherit;
-    }
-
-    .container {
-      width: min(1160px, calc(100% - 44px));
-      margin: auto;
-    }
-
-    /* Navigation */
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, .94);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(220, 227, 236, .8);
-    }
-
-    .nav {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--navy);
-      font-weight: 700;
-      font-size: 17px;
-      white-space: nowrap;
-    }
-
-    .brand-mark {
-      width: 39px;
-      height: 39px;
-      display: grid;
-      place-items: center;
-      border-radius: 11px;
-      background: linear-gradient(145deg, var(--navy), var(--royal));
-      color: white;
-      font-family: "Tajawal", sans-serif;
-      font-size: 19px;
-      font-weight: 800;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 27px;
-      color: #526176;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .nav-links a {
-      transition: color .2s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--royal);
-    }
-
-    .nav-cta {
-      background: var(--navy);
-      color: white;
-      padding: 10px 17px;
-      border-radius: 7px;
-      font-size: 13px;
-      font-weight: 600;
-      transition: .2s ease;
-      white-space: nowrap;
-    }
-
-    .nav-cta:hover {
-      background: var(--royal);
-      transform: translateY(-2px);
-    }
-
-    /* Hero */
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      color: white;
-      background:
-        radial-gradient(ellipse at 12% 15%, rgba(116, 157, 207, .28), transparent 34%),
-        radial-gradient(ellipse at 90% 85%, rgba(65, 104, 157, .38), transparent 35%),
-        linear-gradient(118deg, #111c35 0%, #1c3558 48%, #365b91 100%);
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: .12;
-      background-image: linear-gradient(rgba(255,255,255,.2) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 1px);
-      background-size: 52px 52px;
-      mask-image: linear-gradient(to left, black, transparent 80%);
-    }
-
-    .hero-inner {
-      position: relative;
-      min-height: 535px;
-      display: grid;
-      grid-template-columns: 1.25fr .75fr;
-      align-items: center;
-      gap: 50px;
-      padding-top: 65px;
-      padding-bottom: 75px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      color: #c8d8ed;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: .3px;
-      margin-bottom: 22px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 24px;
-      height: 1px;
-      background: #a9c5e7;
-    }
-
-    .hero h1 {
-      font-family: "Tajawal", sans-serif;
-      font-size: clamp(39px, 5.4vw, 66px);
-      line-height: 1.25;
-      letter-spacing: -.8px;
-      max-width: 680px;
-      margin-bottom: 22px;
-      font-weight: 800;
-    }
-
-    .hero h1 span {
-      color: #b7d0ed;
-    }
-
-    .hero-description {
-      color: #d5dfeb;
-      font-size: 16px;
-      max-width: 590px;
-      line-height: 2.1;
-      margin-bottom: 32px;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      flex-wrap: wrap;
-    }
-
-    .primary-button,
-    .secondary-button {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 48px;
-      padding: 0 23px;
-      border-radius: 7px;
-      font-size: 13px;
-      font-weight: 700;
-      transition: .2s ease;
-    }
-
-    .primary-button {
-      color: var(--navy);
-      background: white;
-    }
-
-    .primary-button:hover {
-      background: #dce9f7;
-      transform: translateY(-2px);
-    }
-
-    .secondary-button {
-      color: white;
-      border: 1px solid rgba(255,255,255,.35);
-    }
-
-    .secondary-button:hover {
-      background: rgba(255,255,255,.1);
-    }
-
-    .hero-visual {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 310px;
-    }
-
-    .visual-frame {
-      width: min(310px, 100%);
-      aspect-ratio: 1;
-      position: relative;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(255,255,255,.24);
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,.13), rgba(255,255,255,.015) 68%);
-      box-shadow: 0 0 90px rgba(166, 196, 231, .12);
-    }
-
-    .visual-frame::before,
-    .visual-frame::after {
-      content: "";
-      position: absolute;
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 50%;
-    }
-
-    .visual-frame::before {
-      inset: 22px;
-    }
-
-    .visual-frame::after {
-      inset: -19px;
-      border-style: dashed;
-      opacity: .65;
-    }
-
-    .shield {
-      width: 125px;
-      height: 145px;
-      display: grid;
-      place-items: center;
-      clip-path: polygon(50% 0%, 91% 15%, 88% 67%, 50% 100%, 12% 67%, 9% 15%);
-      background: linear-gradient(145deg, #d8e7f7, #7398c2);
-      color: #183457;
-      font-size: 58px;
-      filter: drop-shadow(0 15px 20px rgba(0,0,0,.15));
-    }
-
-    .visual-caption {
-      position: absolute;
-      bottom: 24px;
-      color: #d7e3f2;
-      font-size: 12px;
-      letter-spacing: 1px;
-    }
-
-    /* General sections */
-
-    section {
-      padding: 92px 0;
-    }
-
-    .section-heading {
-      max-width: 720px;
-      margin-bottom: 42px;
-    }
-
-    .section-kicker {
-      color: var(--royal);
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: .5px;
-    }
-
-    .section-heading h2 {
-      font-family: "Tajawal", sans-serif;
-      color: var(--navy);
-      font-size: clamp(29px, 3.5vw, 42px);
-      line-height: 1.4;
-      margin-bottom: 13px;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 2;
-    }
-
-    /* Introduction */
-
-    .intro {
-      background: white;
-    }
-
-    .intro-layout {
-      display: grid;
-      grid-template-columns: .8fr 1.2fr;
-      gap: 65px;
-      align-items: start;
-    }
-
-    .intro-side {
-      border-right: 3px solid var(--royal);
-      padding: 7px 23px 7px 0;
-    }
-
-    .intro-side strong {
-      display: block;
-      color: var(--navy);
-      font-family: "Tajawal", sans-serif;
-      font-size: 24px;
-      line-height: 1.6;
-      margin-bottom: 13px;
-    }
-
-    .intro-side span {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .intro-copy p {
-      color: #536175;
-      font-size: 15px;
-      line-height: 2.2;
-      margin-bottom: 16px;
-    }
-
-    .intro-copy p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* Principles */
-
-    .principles {
-      background: #eef2f7;
-    }
-
-    .principle-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: #d9e1eb;
-      border: 1px solid #d9e1eb;
-    }
-
-    .principle {
-      background: #f8fafc;
-      padding: 29px 27px 32px;
-      min-height: 210px;
-      transition: background .2s ease;
-    }
-
-    .principle:hover {
-      background: white;
-    }
-
-    .principle-number {
-      color: #7895b8;
-      font-family: "Tajawal", sans-serif;
-      font-size: 14px;
-      font-weight: 800;
-      margin-bottom: 24px;
-    }
-
-    .principle h3 {
-      color: var(--navy);
-      font-family: "Tajawal", sans-serif;
-      font-size: 21px;
-      margin-bottom: 9px;
-    }
-
-    .principle p {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 2;
-    }
-
-    /* Risks */
-
-    .risks {
-      background: white;
-    }
-
-    .risk-list {
-      border-top: 1px solid var(--line);
-    }
-
-    .risk-item {
-      display: grid;
-      grid-template-columns: 65px 1fr;
-      gap: 20px;
-      padding: 27px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .risk-number {
-      color: #7895b8;
-      font-family: "Tajawal", sans-serif;
-      font-size: 25px;
-      font-weight: 800;
-    }
-
-    .risk-item h3 {
-      color: var(--navy);
-      font-family: "Tajawal", sans-serif;
-      font-size: 21px;
-      margin-bottom: 7px;
-    }
-
-    .risk-item p {
-      color: var(--muted);
-      font-size: 14px;
-      max-width: 850px;
-      line-height: 2.1;
-    }
-
-    .notice {
-      margin-top: 34px;
-      padding: 23px 25px;
-      border-right: 3px solid var(--royal);
-      background: #eef3f9;
-      color: #40516a;
-      font-size: 14px;
-      line-height: 2;
-    }
-
-    /* Safety guide */
-
-    .guide {
-      background: linear-gradient(125deg, #111c35, #25466f 72%, #365b91);
-      color: white;
-    }
-
-    .guide .section-kicker {
-      color: #b7d0ed;
-    }
-
-    .guide .section-heading h2 {
-      color: white;
-    }
-
-    .guide .section-heading p {
-      color: #d0dceb;
-    }
-
-    .guide-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0 55px;
-    }
-
-    .guide-item {
-      padding: 22px 0;
-      border-top: 1px solid rgba(255,255,255,.2);
-    }
-
-    .guide-item h3 {
-      color: #e5eef8;
-      font-family: "Tajawal", sans-serif;
-      font-size: 19px;
-      margin-bottom: 8px;
-    }
-
-    .guide-item p {
-      color: #d0dceb;
-      font-size: 13px;
-      line-height: 2.1;
-    }
-
-    /* Checklist */
-
-    .checklist-section {
-      background: #f5f7fa;
-    }
-
-    .checklist-panel {
-      display: grid;
-      grid-template-columns: .8fr 1.2fr;
-      background: white;
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-    }
-
-    .checklist-info {
-      padding: 40px;
-      color: white;
-      background: linear-gradient(150deg, #1c3558, #365b91);
-    }
-
-    .checklist-info h3 {
-      font-family: "Tajawal", sans-serif;
-      font-size: 27px;
-      margin-bottom: 13px;
-    }
-
-    .checklist-info p {
-      color: #d8e3f1;
-      font-size: 14px;
-      line-height: 2;
-    }
-
-    .progress-track {
-      height: 6px;
-      background: rgba(255,255,255,.2);
-      border-radius: 20px;
-      margin-top: 29px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: #dceafa;
-      transition: width .25s ease;
-    }
-
-    .progress-label {
-      display: block;
-      color: #d8e3f1;
-      font-size: 12px;
-      margin-top: 10px;
-    }
-
-    .checklist-items {
-      padding: 34px 38px;
-    }
-
-    .check-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 13px;
-      padding: 14px 0;
-      border-bottom: 1px solid #edf0f4;
-      color: #435168;
-      font-size: 14px;
-      cursor: pointer;
-    }
-
-    .check-row:last-child {
-      border-bottom: 0;
-    }
-
-    .check-row input {
-      width: 18px;
-      height: 18px;
-      margin-top: 5px;
-      accent-color: var(--royal);
-      flex-shrink: 0;
-      cursor: pointer;
-    }
-
-    /* Quiz */
-
-    .quiz-section {
-      background: white;
-    }
-
-    .quiz-box {
-      max-width: 790px;
-      border: 1px solid var(--line);
-      background: #fbfcfe;
-      padding: 36px;
-    }
-
-    .quiz-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-
-    .quiz-top span {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .quiz-progress {
-      width: 100%;
-      height: 4px;
-      background: #e2e8f0;
-      margin-bottom: 27px;
-    }
-
-    .quiz-progress div {
-      height: 100%;
-      width: 0%;
-      background: var(--royal);
-      transition: width .25s ease;
-    }
-
-    .quiz-question {
-      color: var(--navy);
-      font-family: "Tajawal", sans-serif;
-      font-size: 23px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .answers {
-      display: grid;
-      gap: 10px;
-    }
-
-    .answer {
-      width: 100%;
-      padding: 13px 16px;
-      text-align: right;
-      border: 1px solid var(--line);
-      background: white;
-      color: #425168;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: .2s ease;
-    }
-
-    .answer:hover:not(:disabled) {
-      border-color: var(--royal);
-      background: #f0f5fb;
-    }
-
-    .answer:disabled {
-      cursor: default;
-      opacity: 1;
-    }
-
-    .answer.correct {
-      border-color: #5b987a;
-      background: #edf7f1;
-      color: #276044;
-    }
-
-    .answer.wrong {
-      border-color: #c27a7a;
-      background: #fbefef;
-      color: #8c3d3d;
-    }
-
-    .feedback {
-      display: none;
-      margin-top: 17px;
-      padding: 14px 16px;
-      background: #edf2f8;
-      color: #40516a;
-      font-size: 13px;
-      line-height: 2;
-    }
-
-    .quiz-next {
-      display: none;
-      margin-top: 20px;
-      border: 0;
-      background: var(--navy);
-      color: white;
-      padding: 12px 22px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 13px;
-    }
-
-    .quiz-next:hover {
-      background: var(--royal);
-    }
-
-    .quiz-result {
-      display: none;
-      text-align: center;
-      padding: 25px 10px;
-    }
-
-    .quiz-result h3 {
-      color: var(--navy);
-      font-family: "Tajawal", sans-serif;
-      font-size: 29px;
-      margin-bottom: 10px;
-    }
-
-    .quiz-result p {
-      color: var(--muted);
-      margin-bottom: 22px;
-      font-size: 14px;
-    }
-
-    /* Closing banner */
-
-    .closing {
-      padding: 65px 0;
-      background: #e9eef5;
-    }
-
-    .closing-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 35px;
-    }
-
-    .closing h2 {
-      color: var(--navy);
-      font-family: "Tajawal", sans-serif;
-      font-size: 29px;
-      margin-bottom: 8px;
-    }
-
-    .closing p {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .closing a {
-      flex-shrink: 0;
-      padding: 13px 21px;
-      background: var(--navy);
-      color: white;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 600;
-      transition: .2s ease;
-    }
-
-    .closing a:hover {
-      background: var(--royal);
-    }
-
-    /* Footer */
-
-    footer {
-      background: #101a30;
-      color: white;
-      padding: 35px 0;
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .footer-brand {
-      font-family: "Tajawal", sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 5px;
-    }
-
-    .footer-note {
-      color: #aebdd0;
-      font-size: 11px;
-    }
-
-    .footer-credit {
-      color: #d4e0ed;
-      font-size: 12px;
-    }
-
-    /* Responsive */
-
-    @media (max-width: 850px) {
-      .nav-links {
-        gap: 13px;
-        font-size: 11px;
-      }
-
-      .nav-cta {
-        display: none;
-      }
-
-      .hero-inner {
-        grid-template-columns: 1fr .55fr;
-        gap: 20px;
-      }
-
-      .visual-frame {
-        width: 220px;
-      }
-
-      .intro-layout {
-        gap: 35px;
-      }
-
-      .principle-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 620px) {
-      .container {
-        width: min(100% - 30px, 1160px);
-      }
-
-      .nav {
-        min-height: 67px;
-      }
-
-      .brand {
-        font-size: 14px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero-inner {
-        grid-template-columns: 1fr;
-        padding-top: 65px;
-        padding-bottom: 55px;
-      }
-
-      .hero h1 {
-        font-size: 43px;
-      }
-
-      .hero-description {
-        font-size: 14px;
-      }
-
-      .hero-visual {
-        min-height: 225px;
-      }
-
-      .visual-frame {
-        width: 185px;
-      }
-
-      .shield {
-        width: 90px;
-        height: 108px;
-        font-size: 43px;
-      }
-
-      section {
-        padding: 65px 0;
-      }
-
-      .intro-layout,
-      .checklist-panel {
-        grid-template-columns: 1fr;
-      }
-
-      .intro-layout {
-        gap: 30px;
-      }
-
-      .principle-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .principle {
-        min-height: auto;
-      }
-
-      .guide-grid {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
-
-      .checklist-info,
-      .checklist-items {
-        padding: 27px 23px;
-      }
-
-      .quiz-box {
-        padding: 24px 19px;
-      }
-
-      .quiz-question {
-        font-size: 20px;
-      }
-
-      .closing-inner {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .footer-inner {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .risk-item {
-        grid-template-columns: 40px 1fr;
-        gap: 12px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الوعي الرقمي | عالم من المعرفة</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --wine: #641f32;
+  --maroon: #842f48;
+  --rose: #b66d7d;
+  --light-rose: #ead0d3;
+  --gold: #bd9858;
+  --beige: #f1e6d8;
+  --cream: #faf7f2;
+  --ink: #30252a;
+  --muted: #76666a;
+  --white: #fff;
+  --shadow: 0 12px 35px rgba(70, 30, 43, .09);
+}
+
+* { box-sizing: border-box; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  line-height: 1.85;
+}
+
+button, a { font: inherit; }
+a { color: inherit; text-decoration: none; }
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(250,247,242,.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid #eaded8;
+}
+
+.nav {
+  max-width: 1180px;
+  margin: auto;
+  padding: 12px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--wine);
+  font-weight: 800;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: linear-gradient(145deg, #641f32, #b66d7d);
+  font-size: 21px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  font-size: 14px;
+  color: #604c52;
+}
+
+.nav-links a:hover { color: var(--maroon); }
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(229,181,168,.25), transparent 30%),
+    radial-gradient(circle at 88% 85%, rgba(198,154,99,.23), transparent 28%),
+    linear-gradient(125deg, #421323 0%, #70263e 48%, #a9576b 100%);
+  color: white;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 50%;
+  left: -140px;
+  top: -210px;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 50%;
+  right: -90px;
+  bottom: -150px;
+}
+
+.hero-inner {
+  max-width: 1180px;
+  margin: auto;
+  padding: 90px 25px 100px;
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 30px;
+  padding: 5px 15px;
+  color: #f4dfbd;
+  font-size: 13px;
+}
+
+.hero h1 {
+  font-family: "Tajawal", sans-serif;
+  font-size: clamp(38px, 6vw, 68px);
+  line-height: 1.25;
+  max-width: 780px;
+  margin: 25px 0 16px;
+  font-weight: 800;
+}
+
+.hero h1 span { color: #e7c68b; }
+
+.hero p {
+  max-width: 620px;
+  color: #f3e7e4;
+  font-size: 17px;
+  margin: 0 0 28px;
+}
+
+.main-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(110deg, #d8b779, #f0d9aa);
+  color: #45202a;
+  padding: 12px 24px;
+  border-radius: 9px;
+  font-weight: 700;
+  box-shadow: 0 8px 22px rgba(0,0,0,.14);
+  transition: transform .2s, box-shadow .2s;
+}
+
+.main-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.2);
+}
+
+.hero-note {
+  margin-top: 42px;
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  color: #f1dfe0;
+  font-size: 13px;
+}
+
+.hero-note span::before {
+  content: "✦";
+  color: #e5c487;
+  margin-left: 8px;
+}
+
+.section {
+  max-width: 1180px;
+  padding: 76px 25px;
+  margin: auto;
+}
+
+.section-heading {
+  margin-bottom: 30px;
+}
+
+.kicker {
+  color: #a16a54;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .4px;
+}
+
+.section-heading h2 {
+  font-family: "Tajawal", sans-serif;
+  color: var(--wine);
+  font-size: clamp(28px, 4vw, 39px);
+  line-height: 1.4;
+  margin: 5px 0;
+}
+
+.section-heading p {
+  color: var(--muted);
+  max-width: 700px;
+  margin: 5px 0;
+}
+
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-top: 42px;
+}
+
+.topic {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transition: transform .25s;
+}
+
+.topic:hover { transform: translateY(-8px); }
+
+.circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 13px 27px rgba(60,30,40,.13);
+  border: 5px solid rgba(255,255,255,.65);
+  transition: transform .25s, box-shadow .25s;
+}
+
+.topic:hover .circle {
+  transform: scale(1.045);
+  box-shadow: 0 18px 32px rgba(60,30,40,.19);
+}
+
+.circle .symbol { font-size: 34px; line-height: 1.5; }
+.circle small { font-size: 12px; color: rgba(255,255,255,.9); }
+
+.c1 { background: linear-gradient(145deg, #5b1b30, #9b455d); }
+.c2 { background: linear-gradient(145deg, #a86b50, #d2a36f); }
+.c3 { background: linear-gradient(145deg, #81506b, #bd8ba0); }
+.c4 { background: linear-gradient(145deg, #756044, #b69a68); }
+.c5 { background: linear-gradient(145deg, #8e344c, #ca7b88); }
+.c6 { background: linear-gradient(145deg, #59404a, #99727b); }
+.c7 { background: linear-gradient(145deg, #a16d69, #d2a49a); }
+.c8 { background: linear-gradient(145deg, #6b3543, #aa6a76); }
+
+.topic strong {
+  color: var(--wine);
+  font-size: 16px;
+}
+
+.topic > span {
+  color: var(--muted);
+  font-size: 12px;
+  max-width: 170px;
+}
+
+.content-section {
+  scroll-margin-top: 85px;
+  padding: 65px 25px;
+}
+
+.content-section:nth-of-type(even) { background: #f1e6d8; }
+
+.content-inner {
+  max-width: 1080px;
+  margin: auto;
+}
+
+.article-title {
+  color: var(--wine);
+  font-family: "Tajawal", sans-serif;
+  font-size: 34px;
+  margin: 0 0 10px;
+}
+
+.article-intro {
+  color: var(--muted);
+  max-width: 760px;
+  margin: 0 0 28px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 25px;
+}
+
+.feature {
+  background: rgba(255,255,255,.82);
+  border: 1px solid #e9d9d5;
+  border-radius: 15px;
+  padding: 23px;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.feature:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.feature h3 {
+  color: var(--wine);
+  font-size: 19px;
+  margin: 0 0 7px;
+}
+
+.feature p {
+  color: #65575a;
+  margin: 0;
+  font-size: 15px;
+}
+
+.feature-icon {
+  font-size: 23px;
+  margin-bottom: 5px;
+}
+
+.callout {
+  background: linear-gradient(110deg, #5c1d31, #873c51);
+  color: white;
+  border-radius: 17px;
+  padding: 25px 28px;
+  margin-top: 25px;
+}
+
+.callout strong { color: #f0d39c; }
+
+.challenge {
+  background: linear-gradient(135deg, #fffaf4, #f0e1d8);
+  border: 1px solid #e5d1c7;
+  border-radius: 18px;
+  padding: 28px;
+  margin-top: 28px;
+}
+
+.challenge h3 {
+  color: var(--wine);
+  margin: 0 0 10px;
+  font-family: "Tajawal", sans-serif;
+  font-size: 24px;
+}
+
+.choice-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.choice {
+  border: 1px solid #d8c3bb;
+  background: white;
+  border-radius: 10px;
+  padding: 12px 16px;
+  text-align: right;
+  cursor: pointer;
+  color: #46383d;
+  transition: .2s;
+}
+
+.choice:hover {
+  border-color: var(--rose);
+  background: #fff8f7;
+}
+
+.choice.correct {
+  background: #e6f1e8;
+  border-color: #6b9a76;
+}
+
+.choice.wrong {
+  background: #f8e6e5;
+  border-color: #bd7474;
+}
+
+.feedback {
+  display: none;
+  margin-top: 15px;
+  padding: 12px 15px;
+  background: #fff;
+  border-radius: 9px;
+  color: var(--wine);
+}
+
+.quiz-card {
+  background: white;
+  border: 1px solid #eadbd4;
+  border-radius: 16px;
+  padding: 25px;
+  margin: 15px 0;
+}
+
+.quiz-card h3 {
+  color: var(--wine);
+  margin-top: 0;
+}
+
+.quiz-progress {
+  height: 7px;
+  background: #eadfdb;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 15px 0;
+}
+
+.quiz-progress div {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #76283f, #c69a63);
+  transition: width .3s;
+}
+
+.quiz-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.action-button {
+  border: none;
+  background: linear-gradient(110deg, #641f32, #a64d61);
+  color: white;
+  border-radius: 9px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.action-button:hover { filter: brightness(1.12); }
+
+.quiz-result {
+  display: none;
+  background: #f1e6d8;
+  border-radius: 14px;
+  padding: 20px;
+  color: var(--wine);
+  text-align: center;
+  margin-top: 18px;
+}
+
+.footer {
+  background: #35151f;
+  color: #f4e8e4;
+  padding: 35px 25px;
+  text-align: center;
+}
+
+.footer strong { color: #e6c68e; }
+.footer p { margin: 5px 0; font-size: 13px; color: #ddc9ca; }
+
+@media(max-width:850px) {
+  .topic-grid { grid-template-columns: repeat(2, 1fr); }
+  .nav-links { gap: 12px; font-size: 12px; }
+}
+
+@media(max-width:560px) {
+  .nav { padding: 10px 15px; }
+  .nav-links { display: none; }
+  .hero-inner { padding: 65px 22px 75px; }
+  .hero p { font-size: 15px; }
+  .section { padding: 55px 20px; }
+  .topic-grid { gap: 22px 12px; }
+  .circle { width: 125px; height: 125px; }
+  .circle .symbol { font-size: 29px; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .content-section { padding: 50px 20px; }
+  .article-title { font-size: 29px; }
+}
+</style>
 </head>
 
 <body>
 
-  <header class="topbar">
-    <div class="container nav">
-      <a href="#home" class="brand">
-        <span class="brand-mark">و</span>
-        <span>الوعي الرقمي</span>
-      </a>
-
-      <nav class="nav-links" aria-label="التنقل الرئيسي">
-        <a href="#about">عن الموضوع</a>
-        <a href="#risks">المخاطر الرقمية</a>
-        <a href="#guide">دليل السلامة</a>
-        <a href="#checklist">قائمة التحقق</a>
-        <a href="#quiz">اختبر معلوماتك</a>
-      </nav>
-
-      <a href="#guide" class="nav-cta">ابدأ التعلّم</a>
+<header class="topbar">
+  <nav class="nav">
+    <div class="brand">
+      <div class="brand-mark">و</div>
+      <span>منصة الوعي الرقمي</span>
     </div>
-  </header>
-
-  <main>
-
-    <section class="hero" id="home">
-      <div class="container hero-inner">
-        <div>
-          <div class="eyebrow">مبادرة تعليمية للتوعية الرقمية</div>
-
-          <h1>
-            عالم رقمي أوسع،
-            <span>ووعي يحميك.</span>
-          </h1>
-
-          <p class="hero-description">
-            أصبح الإنترنت جزءاً أساسياً من حياتنا اليومية، فهو يفتح أبواباً
-            للتعلّم والتواصل والإبداع. لكن الاستخدام الآمن يبدأ بالمعرفة،
-            والتفكير قبل المشاركة، والقدرة على التمييز بين الفرص والمخاطر.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#about" class="primary-button">اكتشف أهمية الوعي الرقمي</a>
-            <a href="#quiz" class="secondary-button">اختبر معلوماتك</a>
-          </div>
-        </div>
-
-        <div class="hero-visual" aria-hidden="true">
-          <div class="visual-frame">
-            <div class="shield">✓</div>
-            <div class="visual-caption">وعي • مسؤولية • أمان</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="intro" id="about">
-      <div class="container intro-layout">
-        <div class="intro-side">
-          <strong>التقنية أداة قوية، وطريقة استخدامها تصنع الفرق.</strong>
-          <span>مقدمة في المواطنة الرقمية والمسؤولية الإلكترونية</span>
-        </div>
-
-        <div class="intro-copy">
-          <div class="section-kicker">01 — مقدمة</div>
-          <div class="section-heading">
-            <h2>لماذا نحتاج إلى الوعي الرقمي؟</h2>
-          </div>
-
-          <p>
-            لم يعد العالم الرقمي مساحة منفصلة عن حياتنا؛ فنحن نستخدمه للتواصل
-            مع الآخرين، والبحث عن المعلومات، ومتابعة الأخبار، والتعلّم،
-            ومشاركة الأفكار. وقد ساهم هذا التطور في تسهيل الوصول إلى المعرفة
-            وفتح فرص جديدة للإبداع والتعاون.
-          </p>
-
-          <p>
-            ومع ذلك، فإن وجودنا على الإنترنت يتطلب قدراً من المسؤولية
-            والانتباه. فليست كل المعلومات المنشورة صحيحة، وليس كل شخص نتواصل
-            معه معروفاً أو موثوقاً، كما أن بعض التصرفات التي تبدو بسيطة قد
-            تؤثر في خصوصيتنا وسمعتنا وأماننا.
-          </p>
-
-          <p>
-            لذلك، يهدف الوعي الرقمي إلى مساعدة الأفراد على اتخاذ قرارات
-            مدروسة أثناء استخدام الإنترنت، واحترام الآخرين، وحماية البيانات
-            الشخصية، والتعامل بحكمة مع المواقف غير الآمنة.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="principles">
-      <div class="container">
-        <div class="section-heading">
-          <div class="section-kicker">02 — ركائز الاستخدام المسؤول</div>
-          <h2>ثلاثة مبادئ تصنع فرقاً</h2>
-          <p>الاستخدام الواعي لا يعتمد على تجنّب التقنية، بل على معرفة كيفية الاستفادة منها بطريقة مسؤولة.</p>
-        </div>
-
-        <div class="principle-grid">
-          <article class="principle">
-            <div class="principle-number">01 / الخصوصية</div>
-            <h3>احمِ معلوماتك</h3>
-            <p>تعامل مع بياناتك الشخصية بحذر، ولا تنشر تفاصيل قد تكشف هويتك أو موقعك أو معلوماتك الخاصة.</p>
-          </article>
-
-          <article class="principle">
-            <div class="principle-number">02 / التفكير</div>
-            <h3>تحقّق قبل المشاركة</h3>
-            <p>لا تصدّق كل ما تراه على الإنترنت. ابحث عن مصدر موثوق قبل نشر الأخبار أو إعادة إرسالها.</p>
-          </article>
-
-          <article class="principle">
-            <div class="principle-number">03 / الاحترام</div>
-            <h3>كن مسؤولاً في تواصلك</h3>
-            <p>استخدم كلمات محترمة، واحترم اختلاف الآخرين، وتذكّر أن للتصرفات الرقمية آثاراً حقيقية.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="risks" id="risks">
-      <div class="container">
-        <div class="section-heading">
-          <div class="section-kicker">03 — فهم المخاطر</div>
-          <h2>ما الذي يجب أن ننتبه إليه؟</h2>
-          <p>معرفة المخاطر المحتملة تساعدنا على التصرّف بحذر، وطلب المساعدة عند الحاجة.</p>
-        </div>
-
-        <div class="risk-list">
-
-          <article class="risk-item">
-            <div class="risk-number">01</div>
-            <div>
-              <h3>التواصل مع أشخاص مجهولين</h3>
-              <p>
-                يجب الحذر عند التواصل مع أشخاص لا نعرفهم في الواقع؛ فقد
-                يتظاهر بعضهم بأنهم أشخاص آخرون لكسب الثقة والتلاعب بالآخرين.
-                وقد يحاولون الحصول على معلومات شخصية أو صور خاصة، أو استغلال
-                ما يحصلون عليه للتهديد أو الابتزاز. لذلك، لا ينبغي مشاركة
-                المعلومات الخاصة مع الغرباء أو قبول طلبات غير مريحة، ومن
-                المهم إخبار شخص بالغ موثوق عند حدوث أي موقف مريب.
-              </p>
-            </div>
-          </article>
-
-          <article class="risk-item">
-            <div class="risk-number">02</div>
-            <div>
-              <h3>التنمّر الإلكتروني</h3>
-              <p>
-                قد يتعرض بعض الأشخاص للإهانة أو السخرية أو التهديد عبر
-                الرسائل والتعليقات والمنشورات. ويمكن أن يؤثر ذلك في شعور
-                الشخص بالأمان والثقة بالنفس. لا تشارك في الإساءة أو تنشرها،
-                واحتفظ بما يثبت حدوثها، واستخدم أدوات الإبلاغ والحظر،
-                واطلب المساعدة من شخص موثوق.
-              </p>
-            </div>
-          </article>
-
-          <article class="risk-item">
-            <div class="risk-number">03</div>
-            <div>
-              <h3>المعلومات المضللة والأخبار الكاذبة</h3>
-              <p>
-                تنتشر أحياناً معلومات غير دقيقة أو صور ومقاطع خارج سياقها،
-                وقد يتم تداولها بسرعة قبل التأكد من صحتها. مشاركة هذه
-                المعلومات قد تسبب سوء الفهم أو تنشر الخوف. لذلك، تحقق من
-                تاريخ الخبر ومصدره، وقارن المعلومات بمصادر موثوقة قبل
-                تصديقها أو إعادة نشرها.
-              </p>
-            </div>
-          </article>
-
-          <article class="risk-item">
-            <div class="risk-number">04</div>
-            <div>
-              <h3>انتهاك الخصوصية وسرقة الحسابات</h3>
-              <p>
-                قد تؤدي كلمات المرور الضعيفة أو الروابط المشبوهة أو مشاركة
-                رموز التحقق إلى وصول الآخرين إلى الحسابات الشخصية. استخدم
-                كلمات مرور قوية ومختلفة، ولا تشارك رموز التحقق مع أي شخص،
-                وفعّل التحقق بخطوتين عندما يكون متاحاً.
-              </p>
-            </div>
-          </article>
-
-          <article class="risk-item">
-            <div class="risk-number">05</div>
-            <div>
-              <h3>المحتوى غير المناسب</h3>
-              <p>
-                قد يظهر أثناء التصفح محتوى مضلل أو مزعج أو غير مناسب للعمر،
-                وقد يؤثر في طريقة التفكير أو يسبب القلق والانزعاج. لا تتفاعل
-                مع المحتوى الذي يثير الشك أو يجعلك غير مرتاح، واستخدم أدوات
-                الإبلاغ وإعدادات الأمان، وتحدث مع شخص بالغ موثوق إذا واجهت
-                شيئاً يقلقك.
-              </p>
-            </div>
-          </article>
-
-          <article class="risk-item">
-            <div class="risk-number">06</div>
-            <div>
-              <h3>الروابط والرسائل الاحتيالية</h3>
-              <p>
-                قد تصلك رسائل تدّعي أنك فزت بجائزة أو تطلب منك تسجيل الدخول
-                عبر رابط غير معروف. الهدف أحياناً هو سرقة معلوماتك أو الوصول
-                إلى حساباتك. لا تضغط على الروابط المشبوهة، ولا تدخل بياناتك
-                في صفحات لا تعرف مصدرها، وتحقق من الجهة المرسلة بشكل مستقل.
-              </p>
-            </div>
-          </article>
-
-        </div>
-
-        <div class="notice">
-          <strong>تذكّر:</strong>
-          إذا واجهت تهديداً أو ابتزازاً أو تواصلاً غير مريح، فلا تتعامل مع
-          الموقف وحدك. أوقف التواصل، واستخدم أدوات الحظر والإبلاغ، واطلب
-          المساعدة من أحد والديك أو شخص بالغ تثق به.
-        </div>
-      </div>
-    </section>
-
-    <section class="guide" id="guide">
-      <div class="container">
-        <div class="section-heading">
-          <div class="section-kicker">04 — دليل عملي</div>
-          <h2>خطوات بسيطة لاستخدام أكثر أماناً</h2>
-          <p>اجعل هذه العادات جزءاً من تجربتك اليومية على الإنترنت.</p>
-        </div>
-
-        <div class="guide-grid">
-          <article class="guide-item">
-            <h3>حافظ على سرية بياناتك</h3>
-            <p>لا تنشر عنوان منزلك أو رقم هاتفك أو موقعك المباشر أو تفاصيلك الشخصية أمام أشخاص لا تعرفهم.</p>
-          </article>
-
-          <article class="guide-item">
-            <h3>استخدم كلمات مرور قوية</h3>
-            <p>اختر كلمة مرور يصعب تخمينها، ولا تستخدم كلمة المرور نفسها في جميع حساباتك.</p>
-          </article>
-
-          <article class="guide-item">
-            <h3>فكّر قبل النشر</h3>
-            <p>قبل نشر صورة أو تعليق، فكّر في من يمكنه رؤيته، وما إذا كان من المناسب أن يبقى متاحاً مستقبلاً.</p>
-          </article>
-
-          <article class="guide-item">
-            <h3>لا تثق بالروابط المجهولة</h3>
-            <p>تحقق من مصدر الرسائل والروابط، ولا تشارك كلمات المرور أو رموز التحقق مع أي شخص.</p>
-          </article>
-
-          <article class="guide-item">
-            <h3>احترم الآخرين</h3>
-            <p>تجنب الإساءة والسخرية ونشر الصور أو المعلومات الخاصة بالآخرين دون إذنهم.</p>
-          </article>
-
-          <article class="guide-item">
-            <h3>اطلب المساعدة عند الحاجة</h3>
-            <p>إذا شعرت بالتهديد أو الانزعاج، تحدث مع شخص بالغ موثوق ولا تحاول حل المشكلة وحدك.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="checklist-section" id="checklist">
-      <div class="container">
-        <div class="section-heading">
-          <div class="section-kicker">05 — قيّم عاداتك الرقمية</div>
-          <h2>قائمة التحقق من السلامة الرقمية</h2>
-          <p>استخدم هذه القائمة لمراجعة بعض العادات التي تساعدك على حماية نفسك أثناء استخدام الإنترنت.</p>
-        </div>
-
-        <div class="checklist-panel">
-          <div class="checklist-info">
-            <h3>خطوة نحو استخدام أكثر وعياً</h3>
-            <p>ضع علامة أمام كل عادة تطبقها. يمكنك العودة إلى القائمة في أي وقت لمراجعة إعداداتك وسلوكك الرقمي.</p>
-            <div class="progress-track">
-              <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <span class="progress-label" id="progressLabel">أنجزت 0 من 6</span>
-          </div>
-
-          <div class="checklist-items">
-            <label class="check-row">
-              <input type="checkbox" class="safety-check">
-              <span>أستخدم كلمات مرور قوية ولا أشاركها مع الآخرين.</span>
-            </label>
-
-            <label class="check-row">
-              <input type="checkbox" class="safety-check">
-              <span>لا أشارك معلوماتي الشخصية مع أشخاص مجهولين.</span>
-            </label>
-
-            <label class="check-row">
-              <input type="checkbox" class="safety-check">
-              <span>أتحقق من صحة المعلومات قبل إعادة نشرها.</span>
-            </label>
-
-            <label class="check-row">
-              <input type="checkbox" class="safety-check">
-              <span>أتجنب فتح الروابط والملفات من مصادر غير موثوقة.</span>
-            </label>
-
-            <label class="check-row">
-              <input type="checkbox" class="safety-check">
-              <span>أحترم خصوصية الآخرين أثناء التواصل والنشر.</span>
-            </label>
-
-            <label class="check-row">
-              <input type="checkbox" class="safety-check">
-              <span>أعرف من يمكنني اللجوء إليه إذا واجهت موقفاً غير آمن.</span>
-            </label>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="quiz-section" id="quiz">
-      <div class="container">
-        <div class="section-heading">
-          <div class="section-kicker">06 — اختبر معرفتك</div>
-          <h2>هل تستطيع اتخاذ القرار الصحيح؟</h2>
-          <p>أجب عن الأسئلة التالية لمعرفة مدى فهمك لمبادئ السلامة الرقمية.</p>
-        </div>
-
-        <div class="quiz-box" id="quizBox">
-          <div class="quiz-top">
-            <strong id="questionCount">السؤال 1 من 5</strong>
-            <span>اختبار الوعي الرقمي</span>
-          </div>
-
-          <div class="quiz-progress">
-            <div id="quizProgress"></div>
-          </div>
-
-          <div id="quizContent">
-            <h3 class="quiz-question" id="questionText"></h3>
-            <div class="answers" id="answers"></div>
-            <div class="feedback" id="feedback"></div>
-            <button class="quiz-next" id="nextButton">السؤال التالي</button>
-          </div>
-
-          <div class="quiz-result" id="quizResult">
-            <h3 id="resultTitle"></h3>
-            <p id="resultText"></p>
-            <button class="quiz-next" id="restartButton" style="display:inline-block">إعادة الاختبار</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="closing">
-      <div class="container closing-inner">
-        <div>
-          <h2>كن واعياً، وكن مسؤولاً، وكن آمناً.</h2>
-          <p>المعرفة هي الخطوة الأولى نحو تجربة رقمية أفضل للجميع.</p>
-        </div>
-        <a href="#home">العودة إلى الأعلى ↑</a>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <div>
-        <div class="footer-brand">الوعي الرقمي</div>
-        <div class="footer-note">مبادرة تعليمية مستقلة للتوعية بالاستخدام الآمن والمسؤول للإنترنت.</div>
-      </div>
-      <div class="footer-credit">إعداد وتطوير: أميرة وزين</div>
+    <div class="nav-links">
+      <a href="#home">الرئيسية</a>
+      <a href="#explore">استكشف</a>
+      <a href="#benefits">الإيجابيات</a>
+      <a href="#challenges">التحديات</a>
+      <a href="#quiz">اختبر معرفتك</a>
     </div>
-  </footer>
+  </nav>
+</header>
 
-  <script>
-    // Interactive safety checklist
-    const checks = document.querySelectorAll(".safety-check");
-    const progressFill = document.getElementById("progressFill");
-    const progressLabel = document.getElementById("progressLabel");
+<main>
 
-    function updateChecklist() {
-      const completed = [...checks].filter(check => check.checked).length;
-      const percentage = (completed / checks.length) * 100;
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="eyebrow">المعرفة • المسؤولية • المستقبل</div>
+    <h1>عالم رقمي مليء بالفرص،<br><span>والوعي يصنع الفرق.</span></h1>
+    <p>
+      أصبح الإنترنت جزءاً أساسياً من حياتنا اليومية؛
+      نتعلم من خلاله، ونتواصل، ونكتشف أفكاراً جديدة.
+      تعرّف على جوانبه المختلفة، واكتشف كيف يمكننا الاستفادة منه بوعي ومسؤولية.
+    </p>
+    <a class="main-button" href="#explore">ابدأ الاستكشاف <span>←</span></a>
+    <div class="hero-note">
+      <span>التعلم والاكتشاف</span>
+      <span>التواصل الإيجابي</span>
+      <span>الاستخدام الواعي</span>
+    </div>
+  </div>
+</section>
 
-      progressFill.style.width = percentage + "%";
-      progressLabel.textContent = `أنجزت ${completed} من ${checks.length}`;
-    }
+<section class="section" id="explore">
+  <div class="section-heading">
+    <div class="kicker">رحلتك تبدأ هنا</div>
+    <h2>استكشف العالم الرقمي</h2>
+    <p>اختر موضوعاً من الدوائر التالية للانتقال مباشرة إلى المعلومات والأنشطة المرتبطة به.</p>
+  </div>
 
-    checks.forEach(check => {
-      check.addEventListener("change", updateChecklist);
-    });
+  <div class="topic-grid">
+    <a class="topic" href="#benefits">
+      <div class="circle c1"><span class="symbol">✦</span><small>01 / الفرص</small></div>
+      <strong>إيجابيات الإنترنت</strong>
+      <span>اكتشف كيف يضيف إلى حياتنا.</span>
+    </a>
 
-    // Interactive quiz
-    const questions = [
-      {
-        question: "تواصل معك شخص لا تعرفه وطلب معلوماتك الشخصية. ماذا تفعل؟",
-        answers: [
-          "أرسل له المعلومات حتى لا أبدو غير مهذب.",
-          "أتجاهل الطلب وأخبر شخصاً بالغاً موثوقاً إذا شعرت بالقلق.",
-          "أرسل له معلومات بسيطة فقط."
-        ],
-        correct: 1,
-        explanation: "لا تشارك معلوماتك الشخصية مع أشخاص مجهولين. اطلب المساعدة إذا شعرت أن الموقف غير آمن."
-      },
-      {
-        question: "وصلتك رسالة تحتوي على رابط يدّعي أنك فزت بجائزة. ما التصرف الأفضل؟",
-        answers: [
-          "أفتح الرابط فوراً.",
-          "أرسل الرابط إلى أصدقائي.",
-          "أتحقق من مصدر الرسالة ولا أفتح الرابط المشبوه."
-        ],
-        correct: 2,
-        explanation: "قد تستخدم الرسائل الاحتيالية الجوائز الوهمية لخداع المستخدمين وسرقة بياناتهم."
-      },
-      {
-        question: "رأيت خبراً مثيراً، لكنك لا تعرف مصدره. ماذا تفعل؟",
-        answers: [
-          "أشاركه بسرعة.",
-          "أبحث عن مصدر موثوق وأتحقق من صحته.",
-          "أفترض أنه صحيح لأنه منتشر."
-        ],
-        correct: 1,
-        explanation: "انتشار الخبر لا يعني صحته. تحقق من المصدر قبل مشاركة أي معلومة."
-      },
-      {
-        question: "شاهدت شخصاً يتعرض للتنمّر الإلكتروني. ما التصرف المسؤول؟",
-        answers: [
-          "أشارك التعليقات الساخرة.",
-          "أتجاهل الأمر دائماً.",
-          "لا أشارك الإساءة، وأبلغ عنها وأطلب المساعدة عند الحاجة."
-        ],
-        correct: 2,
-        explanation: "عدم المشاركة في التنمّر والإبلاغ عن الإساءة يساعدان في جعل البيئة الرقمية أكثر أماناً."
-      },
-      {
-        question: "طلب منك شخص رمز التحقق الذي وصلك إلى هاتفك. ماذا تفعل؟",
-        answers: [
-          "لا أشاركه مع أي شخص.",
-          "أرسله إذا بدا الشخص موثوقاً.",
-          "أنشره في المحادثة."
-        ],
-        correct: 0,
-        explanation: "رموز التحقق خاصة بك، ومشاركتها قد تسمح لشخص آخر بالوصول إلى حسابك."
-      }
-    ];
+    <a class="topic" href="#learning">
+      <div class="circle c2"><span class="symbol">◈</span><small>02 / المعرفة</small></div>
+      <strong>التعلم والإبداع</strong>
+      <span>من المعلومة إلى الفكرة الجديدة.</span>
+    </a>
 
-    let currentQuestion = 0;
-    let score = 0;
-    let answered = false;
+    <a class="topic" href="#communication">
+      <div class="circle c3"><span class="symbol">◎</span><small>03 / التواصل</small></div>
+      <strong>التواصل والمجتمع</strong>
+      <span>كيف قرّبتنا التكنولوجيا؟</span>
+    </a>
 
-    const questionText = document.getElementById("questionText");
-    const answersContainer = document.getElementById("answers");
-    const feedback = document.getElementById("feedback");
-    const nextButton = document.getElementById("nextButton");
-    const questionCount = document.getElementById("questionCount");
-    const quizProgress = document.getElementById("quizProgress");
-    const quizContent = document.getElementById("quizContent");
-    const quizResult = document.getElementById("quizResult");
+    <a class="topic" href="#challenges">
+      <div class="circle c4"><span class="symbol">◇</span><small>04 / التحديات</small></div>
+      <strong>سلبيات الإنترنت</strong>
+      <span>تعرّف على الجوانب التي تحتاج انتباهاً.</span>
+    </a>
 
-    function showQuestion() {
-      answered = false;
-      const item = questions[currentQuestion];
+    <a class="topic" href="#information">
+      <div class="circle c5"><span class="symbol">⌕</span><small>05 / التحقق</small></div>
+      <strong>المعلومات المضللة</strong>
+      <span>هل كل ما نراه صحيح؟</span>
+    </a>
 
-      questionCount.textContent = `السؤال ${currentQuestion + 1} من ${questions.length}`;
-      quizProgress.style.width = `${(currentQuestion / questions.length) * 100}%`;
-      questionText.textContent = item.question;
-      answersContainer.innerHTML = "";
-      feedback.style.display = "none";
-      nextButton.style.display = "none";
+    <a class="topic" href="#privacy">
+      <div class="circle c6"><span class="symbol">◉</span><small>06 / الخصوصية</small></div>
+      <strong>الخصوصية الرقمية</strong>
+      <span>لماذا تستحق بياناتنا الحماية؟</span>
+    </a>
 
-      item.answers.forEach((answer, index) => {
-        const button = document.createElement("button");
-        button.className = "answer";
-        button.textContent = answer;
-        button.addEventListener("click", () => chooseAnswer(index));
-        answersContainer.appendChild(button);
-      });
-    }
+    <a class="topic" href="#balance">
+      <div class="circle c7"><span class="symbol">◷</span><small>07 / التوازن</small></div>
+      <strong>الوقت والتوازن</strong>
+      <span>استخدام مفيد دون إفراط.</span>
+    </a>
 
-    function chooseAnswer(selected) {
-      if (answered) return;
-      answered = true;
+    <a class="topic" href="#activity">
+      <div class="circle c8"><span class="symbol">✧</span><small>08 / التفاعل</small></div>
+      <strong>جرّب بنفسك</strong>
+      <span>اختبر قراراتك ومعرفتك.</span>
+    </a>
+  </div>
+</section>
 
-      const item = questions[currentQuestion];
-      const buttons = answersContainer.querySelectorAll(".answer");
+<section class="content-section" id="benefits">
+  <div class="content-inner">
+    <div class="kicker">الجانب الإيجابي</div>
+    <h2 class="article-title">كيف يجعل الإنترنت حياتنا أفضل؟</h2>
+    <p class="article-intro">
+      عندما نستخدم الإنترنت بطريقة واعية، يصبح أداة تساعدنا على تطوير مهاراتنا،
+      والوصول إلى المعرفة، واكتشاف فرص لم تكن متاحة بسهولة من قبل.
+    </p>
 
-      buttons.forEach((button, index) => {
-        button.disabled = true;
-        if (index === item.correct) button.classList.add("correct");
-        if (index === selected && selected !== item.correct) {
-          button.classList.add("wrong");
-        }
-      });
+    <div class="feature-grid">
+      <article class="feature">
+        <div class="feature-icon">📚</div>
+        <h3>معرفة بلا حدود</h3>
+        <p>يمكننا الوصول إلى الكتب والدروس والمصادر التعليمية، والتعرف على مواضيع جديدة من مختلف أنحاء العالم.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">💡</div>
+        <h3>مساحة للإبداع</h3>
+        <p>يساعدنا الإنترنت على تصميم الأفكار، وتحرير الصور والفيديوهات، وتعلم مهارات فنية وتقنية جديدة.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">🌍</div>
+        <h3>التعرف على العالم</h3>
+        <p>يتيح لنا اكتشاف ثقافات مختلفة، والتعرف على تجارب أشخاص من مجتمعات متنوعة.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">🚀</div>
+        <h3>فرص للمستقبل</h3>
+        <p>يساعد في تطوير المهارات الرقمية، واكتشاف مجالات مهنية جديدة، والاستعداد لمتطلبات المستقبل.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-      if (selected === item.correct) {
-        score++;
-        feedback.textContent = "إجابة صحيحة. " + item.explanation;
-      } else {
-        feedback.textContent = "ليست الإجابة الصحيحة. " + item.explanation;
-      }
+<section class="content-section" id="learning">
+  <div class="content-inner">
+    <div class="kicker">المعرفة تصنع الفرص</div>
+    <h2 class="article-title">التعلم والإبداع في العصر الرقمي</h2>
+    <p class="article-intro">
+      لم يعد التعلم مقتصراً على الكتب أو الصفوف الدراسية فقط.
+      يمكن للإنترنت أن يكون مساحة واسعة للتجربة والاكتشاف وتطوير المواهب.
+    </p>
+    <div class="feature-grid">
+      <article class="feature">
+        <div class="feature-icon">🎓</div>
+        <h3>التعلم الذاتي</h3>
+        <p>يمكن للطلاب مشاهدة الشروحات التعليمية، ومراجعة الدروس، والتعلم بالسرعة التي تناسبهم.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">🎨</div>
+        <h3>تطوير المواهب</h3>
+        <p>من التصوير والرسم إلى البرمجة والكتابة، توجد أدوات تساعد كل شخص على تنمية اهتماماته.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-      feedback.style.display = "block";
-      nextButton.style.display = "inline-block";
-      nextButton.textContent =
-        currentQuestion === questions.length - 1 ? "عرض النتيجة" : "السؤال التالي";
-    }
+<section class="content-section" id="communication">
+  <div class="content-inner">
+    <div class="kicker">عالم أكثر ترابطاً</div>
+    <h2 class="article-title">التواصل والمجتمع</h2>
+    <p class="article-intro">
+      جعلت التكنولوجيا التواصل أسرع وأسهل، وساعدت الناس على البقاء قريبين
+      حتى عندما تفصل بينهم مسافات طويلة.
+    </p>
+    <div class="feature-grid">
+      <article class="feature">
+        <div class="feature-icon">💬</div>
+        <h3>البقاء على تواصل</h3>
+        <p>تساعدنا وسائل الاتصال الرقمية على الاطمئنان على العائلة والأصدقاء ومشاركة اللحظات المهمة.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">🤝</div>
+        <h3>تبادل الخبرات</h3>
+        <p>يمكن للأشخاص التعاون في المشاريع، ومناقشة الأفكار، وتبادل المعرفة والمهارات.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-    nextButton.addEventListener("click", () => {
-      currentQuestion++;
+<section class="content-section" id="challenges">
+  <div class="content-inner">
+    <div class="kicker">الجانب الذي يحتاج انتباهاً</div>
+    <h2 class="article-title">ما التحديات التي قد نواجهها؟</h2>
+    <p class="article-intro">
+      رغم فوائد الإنترنت الكثيرة، فإن استخدامه دون وعي قد يؤدي إلى بعض المشكلات.
+      معرفة هذه التحديات تساعدنا على اتخاذ قرارات أفضل.
+    </p>
+    <div class="feature-grid">
+      <article class="feature">
+        <div class="feature-icon">⏳</div>
+        <h3>قضاء وقت طويل</h3>
+        <p>قد يؤدي الاستخدام المفرط للأجهزة إلى تقليل الوقت المخصص للدراسة والنوم والأنشطة اليومية.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">⚖️</div>
+        <h3>التأثير على التركيز</h3>
+        <p>كثرة الإشعارات والتنقل المستمر بين التطبيقات قد تجعل التركيز على مهمة واحدة أكثر صعوبة.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">💬</div>
+        <h3>التنمر الإلكتروني</h3>
+        <p>قد يتعرض بعض الأشخاص لتعليقات جارحة أو سلوك مؤذٍ عبر الإنترنت، مما يؤثر في شعورهم بالراحة والثقة.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">🛍️</div>
+        <h3>الاحتيال الإلكتروني</h3>
+        <p>قد تحاول بعض الرسائل أو المواقع خداع المستخدم للحصول على معلوماته أو أمواله، لذلك من المهم التحقق قبل التفاعل.</p>
+      </article>
+    </div>
+    <div class="callout">
+      <strong>تذكّر:</strong>
+      الإنترنت أداة قوية، وتأثيره يعتمد بدرجة كبيرة على طريقة استخدامنا له.
+      التوازن والتفكير قبل التصرف يساعداننا على الاستفادة منه بشكل أفضل.
+    </div>
+  </div>
+</section>
 
-      if (currentQuestion < questions.length) {
-        showQuestion();
-      } else {
-        showResult();
-      }
-    });
+<section class="content-section" id="information">
+  <div class="content-inner">
+    <div class="kicker">فكّر قبل أن تصدّق</div>
+    <h2 class="article-title">هل كل ما نراه على الإنترنت صحيح؟</h2>
+    <p class="article-intro">
+      تنتشر المعلومات بسرعة عبر المنصات الرقمية، لكن ليس كل منشور أو خبر دقيقاً.
+      قد تكون بعض المعلومات قديمة أو غير مكتملة أو غير صحيحة.
+    </p>
+    <div class="feature-grid">
+      <article class="feature">
+        <div class="feature-icon">🔎</div>
+        <h3>ابحث عن المصدر</h3>
+        <p>تحقق من الجهة التي نشرت المعلومة، وهل هي جهة معروفة وموثوقة.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">📅</div>
+        <h3>انتبه للتاريخ</h3>
+        <p>قد تكون المعلومة صحيحة في وقت سابق، لكنها لم تعد مناسبة أو دقيقة اليوم.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-    function showResult() {
-      quizContent.style.display = "none";
-      quizResult.style.display = "block";
-      quizProgress.style.width = "100%";
+<section class="content-section" id="privacy">
+  <div class="content-inner">
+    <div class="kicker">بياناتك لها قيمة</div>
+    <h2 class="article-title">الخصوصية في العالم الرقمي</h2>
+    <p class="article-intro">
+      عندما نستخدم التطبيقات والمواقع، قد نشارك معلومات عن أنفسنا.
+      لذلك من المهم أن نفهم ما الذي نشاركه، ومع من نشاركه.
+    </p>
+    <div class="feature-grid">
+      <article class="feature">
+        <div class="feature-icon">🔐</div>
+        <h3>المعلومات الشخصية</h3>
+        <p>يجب التعامل بحذر مع بيانات مثل كلمات المرور والعنوان ورقم الهاتف ومعلومات الحسابات.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">🧭</div>
+        <h3>التفكير قبل المشاركة</h3>
+        <p>من الأفضل مراجعة إعدادات الخصوصية والتأكد من فهم كيفية استخدام التطبيقات للمعلومات.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-      document.getElementById("resultTitle").textContent =
-        `نتيجتك: ${score} من ${questions.length}`;
+<section class="content-section" id="balance">
+  <div class="content-inner">
+    <div class="kicker">استخدام أكثر توازناً</div>
+    <h2 class="article-title">التكنولوجيا جزء من الحياة، وليست الحياة كلها</h2>
+    <p class="article-intro">
+      يساعدنا تنظيم وقتنا على الاستمتاع بفوائد العالم الرقمي دون إهمال
+      الدراسة أو الهوايات أو العلاقات الاجتماعية أو الراحة.
+    </p>
+    <div class="feature-grid">
+      <article class="feature">
+        <div class="feature-icon">📖</div>
+        <h3>خصص وقتاً للتعلم</h3>
+        <p>استخدم الإنترنت في البحث والتعلم، وحدد هدفاً واضحاً قبل البدء.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">🌿</div>
+        <h3>استمتع بالأنشطة الأخرى</h3>
+        <p>اجعل وقتك متنوعاً بين الأنشطة الرقمية والرياضة والهوايات واللقاءات العائلية.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-      let message = "";
+<section class="content-section" id="activity">
+  <div class="content-inner">
+    <div class="kicker">حان وقت التجربة</div>
+    <h2 class="article-title">ماذا ستفعل في هذا الموقف؟</h2>
+    <p class="article-intro">اختر الإجابة التي تراها الأنسب، ثم اكتشف لماذا قد يكون هذا القرار أفضل.</p>
 
-      if (score === 5) {
-        message = "ممتاز! لديك فهم جيد لمبادئ السلامة الرقمية. استمر في تطبيق هذه العادات.";
-      } else if (score >= 3) {
-        message = "عمل جيد! راجع التفسيرات وتذكر أن الوعي الرقمي يتطور بالتعلّم والممارسة.";
-      } else {
-        message = "هذه فرصة للتعلّم. اقرأ دليل السلامة مرة أخرى ثم جرّب الاختبار من جديد.";
-      }
+    <div class="challenge">
+      <h3>الموقف الأول: معلومة منتشرة</h3>
+      <p>وصلتك رسالة تحتوي على خبر مثير، وطلب منك أحد أصدقائك إعادة نشره بسرعة. ماذا تفعل؟</p>
+      <div class="choice-list">
+        <button class="choice" onclick="answerScenario(this,false)">أعيد نشره فوراً حتى يعرف الجميع.</button>
+        <button class="choice" onclick="answerScenario(this,true)">أتحقق من مصدر الخبر قبل مشاركته.</button>
+        <button class="choice" onclick="answerScenario(this,false)">أغير عنوان الخبر ليصبح أكثر إثارة.</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
 
-      document.getElementById("resultText").textContent = message;
-    }
+    <div class="challenge">
+      <h3>الموقف الثاني: وقت الشاشة</h3>
+      <p>لاحظت أنك تقضي وقتاً طويلاً على التطبيقات، وأصبح لديك واجب دراسي. ما القرار الأفضل؟</p>
+      <div class="choice-list">
+        <button class="choice" onclick="answerScenario(this,false)">أؤجل الواجب وأستمر في التصفح.</button>
+        <button class="choice" onclick="answerScenario(this,true)">أنظم وقتي وأبدأ بإنجاز واجبي.</button>
+        <button class="choice" onclick="answerScenario(this,false)">أحاول القيام بالأمرين دون تنظيم.</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
 
-    document.getElementById("restartButton").addEventListener("click", () => {
-      currentQuestion = 0;
-      score = 0;
-      quizContent.style.display = "block";
-      quizResult.style.display = "none";
-      showQuestion();
-    });
+    <div class="challenge">
+      <h3>الموقف الثالث: تعليق جارح</h3>
+      <p>رأيت شخصاً يتعرض لتعليقات جارحة عبر الإنترنت. ما التصرف الإيجابي؟</p>
+      <div class="choice-list">
+        <button class="choice" onclick="answerScenario(this,true)">أتعامل باحترام، وأبلغ عن السلوك المؤذي عند الحاجة.</button>
+        <button class="choice" onclick="answerScenario(this,false)">أشارك في التعليقات لزيادة انتشارها.</button>
+        <button class="choice" onclick="answerScenario(this,false)">أعيد نشر التعليقات للسخرية من الشخص.</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+  </div>
+</section>
 
-    showQuestion();
-  </script>
+<section class="content-section" id="quiz">
+  <div class="content-inner">
+    <div class="kicker">اختبر ما تعلمته</div>
+    <h2 class="article-title">تحدي الوعي الرقمي</h2>
+    <p class="article-intro">خمسة أسئلة قصيرة. اختر إجابتك واكتشف نتيجتك في النهاية.</p>
+
+    <div class="quiz-card">
+      <div id="quiz-count">السؤال 1 من 5</div>
+      <div class="quiz-progress"><div id="progress"></div></div>
+      <h3 id="question">ما إحدى فوائد الإنترنت في التعليم؟</h3>
+      <div class="choice-list" id="answers"></div>
+      <div class="feedback" id="quiz-feedback" style="display:none"></div>
+      <div class="quiz-actions">
+        <span id="score-label">النقاط: 0</span>
+        <button class="action-button" id="next-button" onclick="nextQuestion()" disabled>السؤال التالي</button>
+      </div>
+      <div class="quiz-result" id="quiz-result"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <strong>منصة الوعي الرقمي</strong>
+  <p>المعرفة مسؤولية، والاستخدام الواعي يصنع مستقبلاً أفضل.</p>
+  <p>مشروع تعليمي مستقل للتوعية بالاستخدام المسؤول للإنترنت.</p>
+  <p>إعداد وتطوير: أميرة وزين</p>
+</footer>
+
+<script>
+function answerScenario(button, correct) {
+  const box = button.closest(".challenge");
+  const buttons = box.querySelectorAll(".choice");
+  const feedback = box.querySelector(".feedback");
+
+  if (box.dataset.answered === "yes") return;
+  box.dataset.answered = "yes";
+
+  buttons.forEach(b => b.disabled = true);
+  button.classList.add(correct ? "correct" : "wrong");
+
+  feedback.style.display = "block";
+  feedback.textContent = correct
+    ? "إجابة موفقة! التفكير والتحقق واحترام الآخرين يساعدنا على استخدام الإنترنت بشكل أفضل."
+    : "ليست الإجابة الأفضل. حاول التفكير في أثر هذا التصرف على نفسك وعلى الآخرين.";
+}
+
+const questions = [
+  {
+    q: "ما إحدى فوائد الإنترنت في التعليم؟",
+    a: ["الوصول إلى مصادر تعليمية متنوعة", "منع اكتساب مهارات جديدة", "إضاعة الوقت فقط"],
+    correct: 0,
+    explanation: "صحيح! الإنترنت يتيح الوصول إلى الدروس والكتب ومصادر المعرفة."
+  },
+  {
+    q: "ماذا تفعل قبل مشاركة خبر منتشر؟",
+    a: ["أنشره فوراً", "أتحقق من مصدره ودقته", "أغير بعض تفاصيله"],
+    correct: 1,
+    explanation: "صحيح! التحقق من المعلومات يقلل انتشار الأخبار المضللة."
+  },
+  {
+    q: "ما أحد آثار الاستخدام المفرط للأجهزة؟",
+    a: ["تحسين التركيز دائماً", "زيادة وقت الأنشطة الخارجية", "التأثير على تنظيم الوقت والتركيز"],
+    correct: 2,
+    explanation: "صحيح! الاستخدام المفرط قد يؤثر في التركيز والأنشطة اليومية."
+  },
+  {
+    q: "لماذا نهتم بالخصوصية الرقمية؟",
+    a: ["لحماية معلوماتنا الشخصية", "لمشاركة كلمات المرور", "لإعطاء بياناتنا لأي موقع"],
+    correct: 0,
+    explanation: "صحيح! معلوماتنا الشخصية تستحق الحماية والتعامل المسؤول."
+  },
+  {
+    q: "ما معنى الاستخدام المتوازن للإنترنت؟",
+    a: ["استخدامه طوال اليوم", "تنظيم الوقت بين الإنترنت والأنشطة الأخرى", "تجنب كل أشكال التكنولوجيا"],
+    correct: 1,
+    explanation: "صحيح! التوازن يعني الاستفادة من التكنولوجيا دون إهمال جوانب الحياة الأخرى."
+  }
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+
+function renderQuestion() {
+  answered = false;
+  const q = questions[current];
+  document.getElementById("quiz-count").textContent = `السؤال ${current + 1} من ${questions.length}`;
+  document.getElementById("progress").style.width = `${(current / questions.length) * 100}%`;
+  document.getElementById("question").textContent = q.q;
+  document.getElementById("score-label").textContent = `النقاط: ${score}`;
+  document.getElementById("quiz-feedback").style.display = "none";
+  document.getElementById("next-button").disabled = true;
+  document.getElementById("next-button").textContent =
+    current === questions.length - 1 ? "عرض النتيجة" : "السؤال التالي";
+
+  const answers = document.getElementById("answers");
+  answers.innerHTML = "";
+
+  q.a.forEach((answer, index) => {
+    const button = document.createElement("button");
+    button.className = "choice";
+    button.textContent = answer;
+    button.onclick = () => chooseAnswer(index, button);
+    answers.appendChild(button);
+  });
+}
+
+function chooseAnswer(index, button) {
+  if (answered) return;
+  answered = true;
+
+  const q = questions[current];
+  const buttons = document.querySelectorAll("#answers .choice");
+  buttons.forEach(b => b.disabled = true);
+
+  const feedback = document.getElementById("quiz-feedback");
+  feedback.style.display = "block";
+
+  if (index === q.correct) {
+    score++;
+    button.classList.add("correct");
+    feedback.textContent = "إجابة صحيحة! " + q.explanation;
+  } else {
+    button.classList.add("wrong");
+    buttons[q.correct].classList.add("correct");
+    feedback.textContent = "حاول مرة أخرى في السؤال القادم. " + q.explanation;
+  }
+
+  document.getElementById("score-label").textContent = `النقاط: ${score}`;
+  document.getElementById("next-button").disabled = false;
+}
+
+function nextQuestion() {
+  if (!answered) return;
+
+  if (current < questions.length - 1) {
+    current++;
+    renderQuestion();
+  } else {
+    document.getElementById("quiz-count").textContent = "اكتمل التحدي!";
+    document.getElementById("question").textContent = "أحسنت! لقد أنهيت اختبار الوعي الرقمي.";
+    document.getElementById("answers").innerHTML = "";
+    document.getElementById("quiz-feedback").style.display = "none";
+    document.getElementById("progress").style.width = "100%";
+    document.getElementById("next-button").style.display = "none";
+
+    const result = document.getElementById("quiz-result");
+    result.style.display = "block";
+    result.innerHTML = `<h3>نتيجتك: ${score} من ${questions.length}</h3>
+      <p>${score === 5 ? "ممتاز! لديك معرفة رائعة بالوعي الرقمي." :
+      score >= 3 ? "عمل جيد! واصل التعلم وتطوير معرفتك." :
+      "بداية جيدة! استكشف المواضيع وحاول مرة أخرى."}</p>
+      <button class="action-button" onclick="restartQuiz()">إعادة الاختبار</button>`;
+  }
+}
+
+function restartQuiz() {
+  current = 0;
+  score = 0;
+  document.getElementById("quiz-result").style.display = "none";
+  document.getElementById("next-button").style.display = "inline-block";
+  renderQuestion();
+}
+
+renderQuestion();
+</script>
 
 </body>
 </html>
